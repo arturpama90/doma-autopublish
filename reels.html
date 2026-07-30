@@ -1,0 +1,917 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DoMa · Estudio de Reels</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--terra:#E96441;--ink:#1E2A38;--teal:#2FA37C;--sand:#F7F1E8;--cream:#FBF7F0;--line:#e7ddce}
+body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;padding:34px 16px 90px}
+.wrap{max-width:880px;margin:0 auto}
+h1{font-size:clamp(26px,5vw,38px);letter-spacing:-1px}
+.sub{color:#5b6774;margin:8px 0 8px;max-width:700px}
+.flujo{background:#eaf6f0;border:1px solid #bfe3d3;border-radius:14px;padding:14px 18px;margin:18px 0 8px;font-size:14.5px;color:#1f6b51}
+.flujo b{color:#14563f}
+.neg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:10px 0 26px}
+.neg h3{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);margin-bottom:6px}
+.neg pre{font-size:12.5px}
+.reel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:16px}
+.rh{display:flex;gap:18px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.pid{font-weight:700;color:var(--terra);font-size:13px;letter-spacing:.08em}
+h2{font-size:20px;letter-spacing:-.4px;margin:2px 0 6px}
+.meta{font-size:13px;color:#5b6774} .meta b{color:var(--teal)}
+.final{position:relative;flex:0 0 150px}
+.final video{width:150px;aspect-ratio:9/16;background:#101820;border-radius:12px;display:none}
+.final.has video{display:block} .final.has .novid{display:none}
+.novid{width:150px;aspect-ratio:9/16;border:2px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:#98a2ad;padding:10px}
+details{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+summary{cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink)}
+pre{white-space:pre-wrap;word-wrap:break-word;font-family:inherit;font-size:13.5px;background:var(--sand);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:8px}
+.ajustes{font-size:13px;background:#fdf3e7;border:1px solid #f2d9b8;border-radius:10px;padding:10px 12px;margin:10px 0}
+.clip{margin:12px 0;border:1px solid var(--line);border-radius:12px;padding:12px}
+.clip-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px}
+.clip-h code{background:var(--sand);padding:2px 8px;border-radius:6px;font-size:12px}
+.clip video{width:120px;aspect-ratio:9/16;background:#101820;border-radius:10px;margin-top:8px;display:none}
+.clip.has video{display:block}
+.cp{margin-left:auto;border:1.5px solid var(--terra);background:#fff;color:var(--terra);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.cp.ok{background:var(--teal);border-color:var(--teal);color:#fff}
+.foot{text-align:center;color:#8a95a1;font-size:13px;margin-top:30px}
+</style></head><body><div class="wrap">
+<h1>Estudio de Reels · DoMa</h1>
+<p class="sub">Aquí se produce y se previsualiza cada Reel <b>antes</b> de que se programe.
+Un Reel nunca se publica solo: aunque el video exista, no sale hasta que se aprueba.</p>
+<div class="flujo"><b>El flujo completo:</b> 1) Genera los clips con los prompts de abajo
+(en Veo por el workflow, o gratis en PixVerse/Kling copiando el prompt) →
+2) nómbralos exactamente como dice cada tarjeta y súbelos a <code>contenido/clips/</code> →
+3) graba tu voz y súbela a <code>voces/</code> → 4) corre el ensamblado (Claude Code:
+"ensambla el reel p05") → 5) <b>míralo aquí</b> → 6) apruébalo (Claude Code:
+"aprueba el reel p05") y se publica solo a su hora.</div>
+<div class="neg"><h3>Prompt negativo · pégalo donde la herramienta lo permita</h3>
+<pre id="negg">faces, human face, close-up of face, portrait, people talking, mouth moving, lip sync, text, letters, words, signage, logos, watermark, subtitles, captions, oversaturated colors, glossy plastic look, perfect symmetry, stock photo look, cgi, 3d render, cartoon, smooth gimbal camera movement, slow motion</pre><button class="cp" data-t="negg" style="margin-top:8px">Copiar</button></div>
+
+  <article class="reel" id="p01">
+    <header class="rh">
+      <div><span class="pid">p01</span><h2>El anuncio: por qué existe DoMa</h2>
+        <div class="meta">2026-08-03 · 07:15:00 ET · 5 clips de 8s · estado: <b class="est" data-id="p01">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p01.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p01.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p01.m4a</code>)</summary>
+      <pre>[0-3s · lo primero que se oye]
+&quot;Voy a hacer algo que ninguna agencia de marketing hace.&quot;
+
+[3-12s]
+&quot;Por cada tres negocios que me paguen, voy a trabajar gratis para uno de la comunidad.
+Gratis. Sin letra chiquita.&quot;
+
+[12-28s]
+&quot;Me llamo Arturo. Soy de aquí, de Melbourne. Y llevo años viendo lo mismo:
+el negocio del americano sale primero en Google. El nuestro no sale.
+No es porque trabajemos menos. Es porque nadie nos explicó cómo.&quot;
+
+[28-40s]
+&quot;Eso es lo que voy a arreglar. Se llama DoMa Marketing. Y empieza hoy.&quot;
+
+[40-45s]
+&quot;Todo agosto voy a enseñar aquí, gratis, lo que las agencias cobran.
+Google, reseñas, WhatsApp, fotos. Sígueme y no te pierdes ninguno.&quot;
+
+TEXTO EN PANTALLA (todo el video):
+0-3s   →  &quot;Ninguna agencia hace esto&quot;
+3-12s  →  &quot;3 pagan. 1 crece GRATIS.&quot;
+12-28s →  &quot;El problema no es tu trabajo. Es que no te encuentran.&quot;
+40-45s →  &quot;Sígueme → @crececondoma&quot;</pre></details>
+    <details><summary>Los 5 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p01_c01.mp4</code>
+          <button class="cp" data-t="pr_p01_1">Copiar prompt</button></div>
+        <pre id="pr_p01_1">A pair of hands turning the key in an old car ignition at dawn, worn steering wheel, dashboard dust, windshield fogged at the edges, warm low sunrise light through the side window, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p01_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p01_c02.mp4</code>
+          <button class="cp" data-t="pr_p01_2">Copiar prompt</button></div>
+        <pre id="pr_p01_2">Close-up of a hand flipping a small cardboard OPEN sign on a glass door, fingerprints on the glass, reflection of a quiet street, early morning light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p01_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p01_c03.mp4</code>
+          <button class="cp" data-t="pr_p01_3">Copiar prompt</button></div>
+        <pre id="pr_p01_3">Overhead shot of two worn hands kneading dough on a scratched metal counter, flour dust in the air, small family bakery back kitchen, hard side light from one window, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p01_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 4</b><code>p01_c04.mp4</code>
+          <button class="cp" data-t="pr_p01_4">Copiar prompt</button></div>
+        <pre id="pr_p01_4">A hand in a work glove picking up a hammer from a plywood workbench, sawdust, coiled extension cord, a coffee cup with a ring stain, overcast light from an open garage door, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p01_c04.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 5</b><code>p01_c05.mp4</code>
+          <button class="cp" data-t="pr_p01_5">Copiar prompt</button></div>
+        <pre id="pr_p01_5">Empty plastic chairs and folded tablecloths in a small family restaurant before opening, mop bucket in the corner, one ceiling fan turning slowly, fluorescent light mixed with daylight, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p01_c05.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Hoy arranca DoMa Marketing.
+
+La idea es simple. Cobro tarifa justa a negocios que ya pueden invertir en marketing, y con ese margen trabajo gratis para uno que todavía no puede. Por cada 3 que pagan, 1 de la comunidad crece gratis.
+
+No es caridad. Es cómo está armado el negocio desde el primer día.
+
+Soy de Melbourne. Trabajo en español y en inglés. Y llevo tiempo viendo la misma escena repetirse: la taquería que se llena los sábados y no aparece cuando alguien busca &quot;comida mexicana cerca de mí&quot;. El contratista que hace un trabajo impecable y tiene tres reseñas.
+
+Eso se arregla. Y muchas veces no cuesta dinero, solo que alguien te lo explique.
+
+Y esto es lo que va a pasar aquí todo agosto: voy a enseñar, gratis, lo que las agencias cobran. Cómo salir en Google, cómo conseguir reseñas, cómo usar WhatsApp para que te compren dos veces, cómo tomar fotos que venden con el puro celular.
+
+Sígueme para no perderte ninguno. Y compártelo con ese amigo o familiar que tiene negocio: esto es para él.
+
+Estoy en Florida. Esto sirve en cualquier estado.
+
+#NegociosHispanos #NegociosLatinos #EmprendedoresLatinos #NegocioLocal #MarketingBilingue #LatinosEnUSA #DueñosDeNegocio #MarketingVirtual #Florida</pre></details>
+  </article>
+  <article class="reel" id="p05">
+    <header class="rh">
+      <div><span class="pid">p05</span><h2>El truco del link directo de reseñas</h2>
+        <div class="meta">2026-08-05 · 20:00:00 ET · 2 clips de 8s · estado: <b class="est" data-id="p05">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p05.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p05.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p05.m4a</code>)</summary>
+      <pre>[0-3s]
+&quot;Tienes 6 reseñas y tu competencia tiene 80.&quot;
+
+[3-9s]
+&quot;Y piensas: yo no le puedo andar pidiendo eso a mis clientes.
+Sí puedes. Pero no así.&quot;
+
+[9-20s · aquí empieza la grabación de pantalla]
+&quot;No mandes &#x27;déjame una reseña&#x27;. Eso nadie lo hace, porque implica buscarte en Google.
+Manda el link directo, el que abre la cajita de escribir ya.
+Se saca así: entras a tu perfil de negocio, Pide reseñas, copiar link. Ahí está.&quot;
+
+[20-32s]
+&quot;Lo guardas en las notas del celular. Y lo mandas por WhatsApp diez minutos después
+de que el cliente salió contento. No al día siguiente. Diez minutos.
+Ahí es cuando la gente escribe.&quot;
+
+[32-35s]
+&quot;Pruébalo esta semana con cinco clientes. Nada más cinco.&quot;
+
+TEXTO EN PANTALLA:
+0-3s   →  &quot;6 reseñas vs 80&quot;
+9-20s  →  &quot;Perfil → Pide reseñas → Copiar link&quot;
+20-32s →  &quot;Mándalo a los 10 MINUTOS. No mañana.&quot;</pre></details>
+    <details><summary>Los 2 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p05_c01.mp4</code>
+          <button class="cp" data-t="pr_p05_1">Copiar prompt</button></div>
+        <pre id="pr_p05_1">Close-up over the shoulder of a hand holding a phone with a blank bright screen, blurred small shop interior behind, shelves out of focus, a counter with a card reader, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p05_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p05_c02.mp4</code>
+          <button class="cp" data-t="pr_p05_2">Copiar prompt</button></div>
+        <pre id="pr_p05_2">A hand setting down a phone next to a used receipt spike and a pen on a diner counter, coffee stain rings on the formica, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p05_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>El link directo. Ahí está todo.
+
+Nadie va a buscar tu negocio en Google solo para dejarte una reseña. Pero casi todos escriben si les llega el link ya abierto por WhatsApp, mientras todavía están contentos.
+
+Perfil de negocio → Pide reseñas → copiar link. Guárdalo en las notas del celular para tenerlo a mano.
+
+Y lo mandas diez minutos después de que el cliente sale. No mañana, no el lunes. Diez minutos.
+
+[Cuando ya lo hayas probado con tu piloto, pon el número real aquí. Ejemplo: &quot;Lo probé con un cliente: 4 reseñas nuevas en 6 días.&quot; Si todavía no tienes el dato, borra esta línea y publica el resto.]
+
+Pruébalo con cinco clientes esta semana y me dices.
+
+¿Cuántas reseñas tienes ahora? Escríbelo y te digo si es poco o normal para tu giro.
+
+#GoogleBusiness #SEOLocal #ReseñasGoogle #Melbourne #MelbourneFL #PalmBay #BrevardCounty #SpaceCoast #NegociosHispanos #EmprendedoresLatinos #NegocioLocal</pre></details>
+  </article>
+  <article class="reel" id="p09">
+    <header class="rh">
+      <div><span class="pid">p09</span><h2>Hazle el diagnóstico a tu negocio tú mismo</h2>
+        <div class="meta">2026-08-07 · 12:30:00 ET · 3 clips de 8s · estado: <b class="est" data-id="p09">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p09.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p09.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p09.m4a</code>)</summary>
+      <pre>[0-4s]
+&quot;Las agencias cobran por esto. Yo te voy a enseñar a hacerlo tú, gratis,
+en cuarenta minutos.&quot;
+
+[4-18s]
+&quot;Se revisan cuatro cosas, en este orden.
+Uno: búscate en Google como te buscaría un cliente. &#x27;Tacos cerca de mí&#x27;.
+&#x27;Plomero en tu ciudad&#x27;. ¿Sales? ¿En qué lugar? Apúntalo.&quot;
+
+[18-30s]
+&quot;Dos: tus reseñas. No cuántas. De cuándo es la última.
+Si es de hace seis meses, para Google estás medio muerto.
+Tres: tu perfil. Horario, categoría, fotos de este año. Sí o no.&quot;
+
+[30-44s]
+&quot;Y cuatro: mándate un mensaje a ti mismo desde el teléfono de un amigo.
+¿Cuánto tardas en contestar? Esa es la prueba que casi todos reprueban.
+El cliente de hoy no espera dos horas. Se va con el que contesta.&quot;
+
+[44-50s]
+&quot;Cuatro cosas, cuarenta minutos, cero dólares.
+Comenta la palabra GUÍA y te mando el checklist completo por mensaje.&quot;
+
+TEXTO EN PANTALLA:
+0-4s   →  &quot;Diagnóstico GRATIS, hecho por ti&quot;
+4-18s  →  &quot;1. Búscate como cliente&quot;
+18-30s →  &quot;2. ¿De cuándo es tu última reseña?&quot;
+30-44s →  &quot;3. Perfil al día · 4. ¿Qué tan rápido contestas?&quot;
+44-50s →  &quot;Comenta: GUÍA&quot;</pre></details>
+    <details><summary>Los 3 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p09_c01.mp4</code>
+          <button class="cp" data-t="pr_p09_1">Copiar prompt</button></div>
+        <pre id="pr_p09_1">An open spiral notebook on a cluttered desk with handwritten notes, unreadable scribbled handwriting, a pen resting on the page, afternoon window light across the paper, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p09_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p09_c02.mp4</code>
+          <button class="cp" data-t="pr_p09_2">Copiar prompt</button></div>
+        <pre id="pr_p09_2">A hand pouring coffee into a chipped mug next to a laptop, steam rising, papers scattered around, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p09_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p09_c03.mp4</code>
+          <button class="cp" data-t="pr_p09_3">Copiar prompt</button></div>
+        <pre id="pr_p09_3">Close-up of a laptop trackpad and a hand scrolling, blurred bright screen, evening desk lamp light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p09_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Las agencias cobran por esto. Hazlo tú, gratis, en cuarenta minutos.
+
+El diagnóstico de tu negocio son cuatro revisiones:
+
+Búscate en Google como te buscaría un cliente. &quot;Tacos cerca de mí&quot;. &quot;Plomero en tu ciudad&quot;. ¿Sales? ¿En qué posición? Apúntalo, sin hacerte trampa.
+
+Mira tu última reseña. No cuántas tienes: de cuándo es la última. Si es de hace seis meses, para Google estás medio muerto, y para el cliente también.
+
+Revisa tu perfil con ojos de extraño. ¿El horario es el de verdad? ¿La categoría es la específica? ¿Hay fotos de este año?
+
+Y la prueba que casi todos reprueban: pídele a un amigo que te mande un mensaje como cliente. Mide cuánto tardas en contestar. El cliente de hoy no espera dos horas; se va con el que contesta primero.
+
+Cuatro cosas, cuarenta minutos, cero dólares. Con eso sabes más de tu negocio que la mitad de los reportes pagados.
+
+Comenta la palabra GUÍA y te mando el checklist completo por mensaje. Y sígueme, que toda la semana que viene es de WhatsApp y fotos.
+
+#NegociosHispanos #NegociosLatinos #EmprendedoresLatinos #NegocioLocal #MarketingBilingue #LatinosEnUSA #DueñosDeNegocio #MarketingVirtual #GoogleBusiness #SEOLocal #ReseñasGoogle</pre></details>
+  </article>
+  <article class="reel" id="p13">
+    <header class="rh">
+      <div><span class="pid">p13</span><h2>WhatsApp: el canal que nadie usa bien</h2>
+        <div class="meta">2026-08-11 · 20:00:00 ET · 4 clips de 8s · estado: <b class="est" data-id="p13">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p13.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p13.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p13.m4a</code>)</summary>
+      <pre>[0-4s]
+&quot;Tienes cuatrocientos clientes en tu WhatsApp y les escribes cero veces al mes.&quot;
+
+[4-10s]
+&quot;Eso es como tener una lista de oro guardada en un cajón.&quot;
+
+[10-18s]
+&quot;Regla uno: no hagas grupo. La gente odia los grupos, se sale y te bloquea.
+Usa el Estado, o listas de difusión en WhatsApp Business.&quot;
+
+[18-28s]
+&quot;Regla dos: Estado todos los días, pero no para vender.
+Para que te vean existir. La bandeja del taller. El pan saliendo. La camioneta
+llegando al trabajo. Diez segundos.&quot;
+
+[28-38s]
+&quot;Regla tres: una vez a la semana, un mensaje que sirva de algo.
+Un descuento, un horario especial, un recordatorio. Una vez. No cinco.&quot;
+
+[38-40s]
+&quot;Haz esto un mes y te regresa gente que no veías desde el año pasado.&quot;
+
+TEXTO EN PANTALLA:
+0-4s   →  &quot;400 contactos. 0 mensajes.&quot;
+10-18s →  &quot;1. NO hagas grupo&quot;
+18-28s →  &quot;2. Estado diario ≠ vender&quot;
+28-38s →  &quot;3. Un mensaje útil por semana&quot;</pre></details>
+    <details><summary>Los 4 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p13_c01.mp4</code>
+          <button class="cp" data-t="pr_p13_1">Copiar prompt</button></div>
+        <pre id="pr_p13_1">A phone face down on the passenger seat of a work van, screen lighting up, ladder visible through the rear window, dusk light, dirty windshield, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p13_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p13_c02.mp4</code>
+          <button class="cp" data-t="pr_p13_2">Copiar prompt</button></div>
+        <pre id="pr_p13_2">A hand holding a phone at chest height inside a small bakery, trays of bread out of focus behind, blank bright screen, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p13_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p13_c03.mp4</code>
+          <button class="cp" data-t="pr_p13_3">Copiar prompt</button></div>
+        <pre id="pr_p13_3">Close-up of a thumb resting on a phone screen edge, kitchen counter behind with a cutting board and a knife, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p13_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 4</b><code>p13_c04.mp4</code>
+          <button class="cp" data-t="pr_p13_4">Copiar prompt</button></div>
+        <pre id="pr_p13_4">A phone charging on a nightstand at night, cable tangled, screen glowing faintly, a glass of water beside it, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p13_c04.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Tienes cuatrocientos clientes guardados en tu WhatsApp y les escribes cero veces al mes.
+
+Es el canal más subutilizado que existe en nuestra comunidad, y es gratis.
+
+Tres reglas:
+
+No hagas grupo. La gente odia los grupos, se sale, y de paso te silencia para siempre. Usa el Estado o las listas de difusión de WhatsApp Business.
+
+Publica Estado todos los días, pero no para vender. Para que te vean existir. La bandeja del taller a las siete de la mañana. El pan saliendo del horno. La camioneta llegando al trabajo. Diez segundos, sin producción.
+
+Una vez a la semana, y solo una, manda un mensaje que sirva de algo: un descuento, un horario especial, un recordatorio. Si mandas cinco, te bloquean.
+
+Haz esto durante un mes y te va a regresar gente que no veías desde el año pasado. Te lo firmo.
+
+Y ojo con la hora: el Estado que de verdad se ve es el de las 6:30 o 7 de la mañana, cuando la gente va manejando al trabajo. No el de las 3 de la tarde. Ajústalo a tu zona horaria, no a la mía.
+
+¿Ya usas WhatsApp Business o todavía el normal?
+
+#WhatsAppBusiness #Melbourne #MelbourneFL #PalmBay #BrevardCounty #SpaceCoast #NegociosHispanos #EmprendedoresLatinos #NegocioLocal</pre></details>
+  </article>
+  <article class="reel" id="p15">
+    <header class="rh">
+      <div><span class="pid">p15</span><h2>La foto de producto con el celular</h2>
+        <div class="meta">2026-08-13 · 07:15:00 ET · 5 clips de 8s · estado: <b class="est" data-id="p15">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p15.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p15.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p15.m4a</code>)</summary>
+      <pre>[0-3s]
+&quot;No necesitas fotógrafo. Necesitas una ventana.&quot;
+
+[3-10s]
+&quot;Pones el producto al lado de la ventana. Al lado, no de frente al sol.&quot;
+
+[10-16s]
+&quot;Apaga la luz del techo. Esa luz amarilla es la que arruina todas tus fotos.&quot;
+
+[16-24s]
+&quot;Un cartón blanco del otro lado, o una servilleta doblada.
+Rebota la luz y te quita la sombra fea.&quot;
+
+[24-28s]
+&quot;Y no le tomes desde arriba parado. Bájate a la altura del producto.&quot;
+
+[28-30s]
+&quot;Diez segundos. Cero dólares. Se ve mejor que la de tu competencia.&quot;
+
+TEXTO EN PANTALLA:
+0-3s   →  &quot;Cero fotógrafo. Solo una ventana.&quot;
+3-10s  →  &quot;AL LADO de la ventana&quot;
+10-16s →  &quot;APAGA la luz del techo&quot;
+16-24s →  &quot;Cartón blanco = rebote&quot;
+24-28s →  &quot;Bájate a su altura&quot;</pre></details>
+    <details><summary>Los 5 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p15_c01.mp4</code>
+          <button class="cp" data-t="pr_p15_1">Copiar prompt</button></div>
+        <pre id="pr_p15_1">A single loaf of bread on a wooden board placed beside a window, hard directional side light, deep shadow on the far side, dust motes visible in the light beam, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p15_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p15_c02.mp4</code>
+          <button class="cp" data-t="pr_p15_2">Copiar prompt</button></div>
+        <pre id="pr_p15_2">Same loaf of bread lit flatly from above by a yellow ceiling bulb, ugly flat shadow, dull color, unappetizing, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p15_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p15_c03.mp4</code>
+          <button class="cp" data-t="pr_p15_3">Copiar prompt</button></div>
+        <pre id="pr_p15_3">A hand holding a white sheet of paper next to a plate of food to bounce window light, shadow softening on the near side, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p15_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 4</b><code>p15_c04.mp4</code>
+          <button class="cp" data-t="pr_p15_4">Copiar prompt</button></div>
+        <pre id="pr_p15_4">Low angle close-up of a plate of tacos at table height, window light from the left, blurred kitchen behind, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p15_c04.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 5</b><code>p15_c05.mp4</code>
+          <button class="cp" data-t="pr_p15_5">Copiar prompt</button></div>
+        <pre id="pr_p15_5">A phone held low at product height photographing a pastry, the phone screen out of focus, marble counter, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p15_c05.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Cómo tomar la foto de tu producto con el celular, sin gastar un dólar.
+
+Ventana. Nada más eso.
+
+Pon el producto al lado de la ventana, no de frente al sol. La luz de lado te da relieve; la luz de frente te aplasta todo.
+
+Apaga la luz del techo. Esa luz amarilla es la que te está arruinando todas las fotos y no sabías.
+
+Del otro lado del producto pon un cartón blanco, o una servilleta doblada, o una hoja de papel. Rebota la luz y te borra la sombra fea del otro lado.
+
+Y no le tomes desde arriba parado como si le tomaras foto al piso. Bájate a la altura del producto.
+
+Esa foto la subes a Google y a Instagram y se ve mejor que el noventa por ciento de lo que hay en tu categoría. Diez segundos.
+
+Un detalle según dónde estés: en Florida y en el suroeste la luz del mediodía quema todo, así que la ventana sirve de 8 a 10 de la mañana o después de las 5. En Chicago o Nueva York en invierno es al revés: el mediodía es tu mejor hora porque no hay otra.
+
+Súbela y etiquétame, quiero verla.
+
+#FotografiaConCelular #Melbourne #MelbourneFL #PalmBay #BrevardCounty #SpaceCoast #NegociosHispanos #EmprendedoresLatinos #NegocioLocal</pre></details>
+  </article>
+  <article class="reel" id="p20">
+    <header class="rh">
+      <div><span class="pid">p20</span><h2>3 frases que espantan clientes</h2>
+        <div class="meta">2026-08-18 · 12:30:00 ET · 3 clips de 8s · estado: <b class="est" data-id="p20">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p20.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p20.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p20.m4a</code>)</summary>
+      <pre>[0-4s]
+&quot;Hay tres frases en tu perfil que te están espantando clientes y no lo sabes.&quot;
+
+[4-14s]
+&quot;La primera: &#x27;Somos los mejores de la ciudad&#x27;.
+Nadie te cree. Todos lo dicen. No significa nada.
+Cámbiala por algo que se pueda verificar: &#x27;18 años en Palm Bay&#x27;. Eso sí lo creen.&quot;
+
+[14-26s]
+&quot;La segunda: &#x27;Contáctenos para más información&#x27;.
+Eso es pedirle trabajo al cliente. Di el rango. &#x27;Desde 120 dólares&#x27;.
+El que no puede pagarlo no te escribe, y eso es bueno, te ahorra el tiempo.&quot;
+
+[26-38s]
+&quot;Y la tercera, la que más duele:
+la descripción en inglés pasada por traductor automático.
+Se nota en la primera línea. Y si tu español se ve descuidado,
+el cliente asume que tu trabajo también.&quot;
+
+[38-40s]
+&quot;Tres cambios. Quince minutos.&quot;
+
+TEXTO EN PANTALLA:
+4-14s  →  &quot;1. &#x27;Los mejores de la ciudad&#x27; ✗&quot;
+14-26s →  &quot;2. &#x27;Contáctenos&#x27; ✗ → di el precio&quot;
+26-38s →  &quot;3. Traductor automático ✗&quot;</pre></details>
+    <details><summary>Los 3 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p20_c01.mp4</code>
+          <button class="cp" data-t="pr_p20_1">Copiar prompt</button></div>
+        <pre id="pr_p20_1">A hand crumpling a printed sheet of paper on a desk, no readable text, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p20_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p20_c02.mp4</code>
+          <button class="cp" data-t="pr_p20_2">Copiar prompt</button></div>
+        <pre id="pr_p20_2">Close-up of a hand tapping a phone screen impatiently, blurred office background, harsh overhead light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p20_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p20_c03.mp4</code>
+          <button class="cp" data-t="pr_p20_3">Copiar prompt</button></div>
+        <pre id="pr_p20_3">A closed shop door seen from outside at night, empty street reflection, a chain across the handle, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p20_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Tres frases que están espantando clientes de tu perfil ahora mismo.
+
+&quot;Somos los mejores de la ciudad.&quot; Nadie te cree, porque todos lo dicen. Cámbiala por algo verificable: &quot;18 años en Palm Bay&quot;. Eso sí lo creen, porque se puede comprobar.
+
+&quot;Contáctenos para más información.&quot; Eso es pedirle trabajo al cliente antes de darle nada. Di el rango: &quot;Desde 120 dólares&quot;. El que no puede pagarlo no te escribe, y te ahorra la tarde.
+
+Y la que más duele: la descripción pasada por traductor automático. Se nota en la primera línea. Si tu español se ve descuidado, el cliente asume que tu trabajo también se ve así. No es justo, pero es lo que pasa.
+
+Tres cambios, quince minutos, cero dólares.
+
+Manda el link de tu perfil en un mensaje y te digo cuál de las tres tienes.
+
+#GoogleBusiness #SEOLocal #ReseñasGoogle #Melbourne #MelbourneFL #PalmBay #BrevardCounty #SpaceCoast #NegociosHispanos #EmprendedoresLatinos #NegocioLocal</pre></details>
+  </article>
+  <article class="reel" id="p24">
+    <header class="rh">
+      <div><span class="pid">p24</span><h2>Lo que pasó anoche</h2>
+        <div class="meta">2026-08-22 · 11:00:00 ET · 3 clips de 8s · estado: <b class="est" data-id="p24">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p24.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p24.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p24.m4a</code>)</summary>
+      <pre>[0-4s]
+&quot;Anoche fui a un evento de negocios y salí con nueve tarjetas.
+Te digo qué funcionó.&quot;
+
+[4-16s · tomas del evento]
+&quot;Uno: no llegué a vender. Llegué a preguntar.
+&#x27;¿Qué haces? ¿Cuánto llevas? ¿Qué es lo más difícil ahora mismo?&#x27;
+La gente habla de su negocio dos horas si se lo permites.&quot;
+
+[16-30s]
+&quot;Dos: en lugar de dar la tarjeta, saqué el teléfono y le busqué su negocio en Google
+enfrente de él. En treinta segundos le mostré algo que estaba mal.
+Ahí ya no eres el que vende. Eres el que ayudó.&quot;
+
+[30-40s]
+&quot;Tres: al final apunté a mano en la libreta qué me dijo cada uno.
+Hoy sábado les escribí a los nueve con algo específico de su conversación.
+No un &#x27;fue un gusto conocerte&#x27;. Algo específico. Eso es todo el truco.&quot;
+
+TEXTO EN PANTALLA:
+0-4s   →  &quot;9 tarjetas en una noche&quot;
+4-16s  →  &quot;1. Preguntar, no vender&quot;
+16-30s →  &quot;2. Búscale su Google enfrente&quot;
+30-40s →  &quot;3. Escríbeles al día siguiente&quot;</pre></details>
+    <details><summary>Los 3 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p24_c01.mp4</code>
+          <button class="cp" data-t="pr_p24_1">Copiar prompt</button></div>
+        <pre id="pr_p24_1">A stack of business cards spread on a bar counter, one card slightly bent, low warm bar lighting, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p24_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p24_c02.mp4</code>
+          <button class="cp" data-t="pr_p24_2">Copiar prompt</button></div>
+        <pre id="pr_p24_2">A hand writing notes in a small notebook under dim bar light, unreadable handwriting, a glass beside it, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p24_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p24_c03.mp4</code>
+          <button class="cp" data-t="pr_p24_3">Copiar prompt</button></div>
+        <pre id="pr_p24_3">Empty glasses and folded napkins on a high table after an event, string lights out of focus in the background, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p24_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Anoche estuve en el Business Social de la Brevard Hispanic Chamber, en The Melby. Salí con nueve tarjetas y tres diagnósticos agendados. Te cuento qué hice, porque no fue suerte.
+
+No llegué a vender. Llegué a preguntar. &quot;¿Qué haces? ¿Cuánto llevas? ¿Qué es lo más difícil ahora mismo?&quot; La gente te habla de su negocio dos horas si se lo permites, y ahí es donde aprendes qué vender.
+
+En lugar de dar la tarjeta, saqué el teléfono y le busqué su negocio en Google enfrente de él. En treinta segundos le mostraba algo que estaba mal: el horario viejo, la categoría equivocada, cero fotos del año. En ese momento dejas de ser el que vende y te vuelves el que ayudó.
+
+Y al final de cada conversación apunté a mano en la libreta qué me dijo esa persona. Hoy sábado les escribí a los nueve con algo específico de su conversación. No un &quot;fue un gusto conocerte&quot;. Algo específico.
+
+Esto también es marketing. Es la parte que no se puede automatizar.
+
+Y aplica igual si trabajas remoto como yo: la videollamada de 30 minutos donde comparto pantalla y le muestro a alguien su propio Google es la misma jugada. Preguntar en lugar de vender, y mostrar el problema en vez de describirlo.
+
+Si estuviste ahí anoche y no nos vimos, escríbeme. Y si estás en otro estado, la videollamada hace el mismo trabajo.
+
+#BrevardHispanicChamber #Melbourne #MelbourneFL #PalmBay #BrevardCounty #SpaceCoast #NegociosHispanos #EmprendedoresLatinos #NegocioLocal</pre></details>
+  </article>
+  <article class="reel" id="p27">
+    <header class="rh">
+      <div><span class="pid">p27</span><h2>Por qué tu competencia sale primero</h2>
+        <div class="meta">2026-08-25 · 12:30:00 ET · 3 clips de 8s · estado: <b class="est" data-id="p27">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p27.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p27.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p27.m4a</code>)</summary>
+      <pre>[0-4s]
+&quot;Tu competencia no sale primero en Google porque paga. Sale por tres cosas.&quot;
+
+[4-16s]
+&quot;Uno: distancia. Google le muestra al cliente lo que está cerca de él,
+no lo que está cerca de ti. Por eso en Palm Bay sales y en Suntree no.
+Eso no se arregla, se trabaja: pon las zonas donde sirves.&quot;
+
+[16-30s]
+&quot;Dos: cantidad y frescura de reseñas. Ojo con esto: no es solo cuántas.
+Es de cuándo. Veinte reseñas de este año le ganan a cincuenta de 2019.
+Google quiere saber si sigues vivo.&quot;
+
+[30-42s]
+&quot;Tres: cuánto se mueve tu perfil. Fotos nuevas, publicaciones, respuestas.
+Un perfil que se actualiza cada semana le gana a uno abandonado con mejor
+calificación. Eso es lo que casi nadie hace.&quot;
+
+[42-45s]
+&quot;De los tres, dos son gratis y dependen de ti.&quot;
+
+TEXTO EN PANTALLA:
+4-16s  →  &quot;1. Distancia al cliente&quot;
+16-30s →  &quot;2. Reseñas RECIENTES &gt; muchas viejas&quot;
+30-42s →  &quot;3. Movimiento del perfil&quot;
+42-45s →  &quot;2 de 3 son GRATIS&quot;</pre></details>
+    <details><summary>Los 3 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p27_c01.mp4</code>
+          <button class="cp" data-t="pr_p27_1">Copiar prompt</button></div>
+        <pre id="pr_p27_1">Close-up of a hand holding a phone showing a blurred map screen, car dashboard visible below, daylight through windshield, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p27_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p27_c02.mp4</code>
+          <button class="cp" data-t="pr_p27_2">Copiar prompt</button></div>
+        <pre id="pr_p27_2">A row of small storefronts on a suburban street shot from a moving car, palm trees, power lines, slightly out of focus, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p27_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p27_c03.mp4</code>
+          <button class="cp" data-t="pr_p27_3">Copiar prompt</button></div>
+        <pre id="pr_p27_3">A hand placing a phone into a dashboard mount, sunlight glare across the screen, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p27_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Tu competencia no sale primero en Google porque pague. Sale por tres cosas, y dos son gratis.
+
+Distancia. Google le muestra al cliente lo que está cerca de él, no lo que está cerca de ti. Por eso sales en Palm Bay y no sales en Suntree. Eso no se arregla del todo, pero se trabaja: define bien las zonas donde das servicio.
+
+Reseñas recientes. Y aquí está lo que casi nadie sabe: no es solo cuántas tienes. Es de cuándo son. Veinte reseñas de este año le ganan a cincuenta de 2019. Google está tratando de averiguar si sigues abierto.
+
+Movimiento del perfil. Fotos nuevas, publicaciones semanales, respuestas a las reseñas. Un perfil que se mueve cada semana le puede ganar a uno abandonado que tiene mejor calificación. Esto es lo que menos gente hace y lo que más rápido funciona.
+
+Dos de las tres dependen nada más de ti y de veinte minutos a la semana.
+
+¿En qué ciudad y estado está tu negocio? Dime y te digo qué tan peleada está tu categoría.
+
+#GoogleBusiness #SEOLocal #ReseñasGoogle #Melbourne #MelbourneFL #PalmBay #BrevardCounty #SpaceCoast #NegociosHispanos #EmprendedoresLatinos #NegocioLocal</pre></details>
+  </article>
+  <article class="reel" id="p29">
+    <header class="rh">
+      <div><span class="pid">p29</span><h2>El error que más clientes le cuesta a un negocio</h2>
+        <div class="meta">2026-08-27 · 07:15:00 ET · 3 clips de 8s · estado: <b class="est" data-id="p29">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p29.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p29.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p29.m4a</code>)</summary>
+      <pre>[0-5s]
+&quot;Te digo cuál es el error que más clientes le cuesta a un negocio hispano.
+Y no es el que crees.&quot;
+
+[5-18s]
+&quot;No es el logo. No son las redes. No es la página.
+Es contestar tarde.
+Alguien te escribe por WhatsApp preguntando el precio, y le contestas
+en la noche, &#x27;cuando te desocupas&#x27;.&quot;
+
+[18-32s]
+&quot;El problema es que ese cliente le escribió a tres negocios al mismo tiempo.
+Y le compró al primero que contestó. No al mejor. No al más barato.
+Al primero.&quot;
+
+[32-45s]
+&quot;La solución no es vivir pegado al teléfono. Son las respuestas rápidas
+de WhatsApp Business: escribes una vez &#x27;Hola, gracias por escribir,
+te contesto en menos de una hora&#x27; y se manda con dos toques.
+Con eso el cliente ya sabe que existes y te espera.&quot;
+
+[45-50s]
+&quot;Primero el que contesta. Después el mejor. Así funciona hoy.
+Sígueme, que de esto es la serie completa.&quot;
+
+TEXTO EN PANTALLA:
+0-5s   →  &quot;El error #1 (no es el que crees)&quot;
+5-18s  →  &quot;Contestar tarde = cliente perdido&quot;
+18-32s →  &quot;Le compró al PRIMERO que contestó&quot;
+32-45s →  &quot;Respuestas rápidas de WhatsApp Business&quot;
+45-50s →  &quot;Sígueme → @crececondoma&quot;</pre></details>
+    <details><summary>Los 3 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p29_c01.mp4</code>
+          <button class="cp" data-t="pr_p29_1">Copiar prompt</button></div>
+        <pre id="pr_p29_1">A phone screen full of unanswered message threads, held at an angle, blurred, no readable text, evening light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p29_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p29_c02.mp4</code>
+          <button class="cp" data-t="pr_p29_2">Copiar prompt</button></div>
+        <pre id="pr_p29_2">A hand crossing out a line in a notebook with a pen, unreadable handwriting, desk lamp light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p29_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p29_c03.mp4</code>
+          <button class="cp" data-t="pr_p29_3">Copiar prompt</button></div>
+        <pre id="pr_p29_3">An empty chair at a small table in a cafe, two coffee cups, one untouched, afternoon light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p29_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>El error que más clientes le cuesta a un negocio, y no es el logo ni las redes.
+
+Es contestar tarde.
+
+Alguien te escribe por WhatsApp preguntando el precio. Tú estás trabajando, que es lo que deberías estar haciendo, y le contestas en la noche.
+
+El problema: ese cliente le escribió a tres negocios al mismo tiempo. Y le compró al primero que contestó. No al mejor, no al más barato. Al primero.
+
+La solución no es vivir pegado al teléfono. Es esto:
+
+Activa las respuestas rápidas de WhatsApp Business. Escribes una sola vez &quot;Hola, gracias por escribir. Estoy trabajando, te contesto en menos de una hora&quot; y la mandas con dos toques desde donde estés.
+
+Con eso el cliente ya sabe que existes, que su mensaje llegó, y te espera. La venta no se pierde por contestar en una hora. Se pierde por el silencio.
+
+Y si tienes horario fuerte de trabajo, pon el mensaje de ausencia automático para esas horas. Está en Herramientas de la empresa, tarda tres minutos en configurarse.
+
+El que contesta primero gana. Que seas tú.
+
+¿Cuánto tardas normalmente en contestar? Sé honesto, que aquí nadie te regaña.
+
+#NegociosHispanos #NegociosLatinos #EmprendedoresLatinos #NegocioLocal #MarketingBilingue #LatinosEnUSA #DueñosDeNegocio #MarketingVirtual #WhatsAppBusiness</pre></details>
+  </article>
+  <article class="reel" id="p33">
+    <header class="rh">
+      <div><span class="pid">p33</span><h2>Anuncio: el primer negocio patrocinado</h2>
+        <div class="meta">2026-08-31 · 07:15:00 ET · 4 clips de 8s · estado: <b class="est" data-id="p33">falta_video</b></div>
+      </div>
+      <div class="final">
+        <video controls preload="none" src="contenido/videos/p33.mp4"
+          onloadeddata="this.closest('.final').classList.add('has')"></video>
+        <div class="novid">El Reel final aparecerá aquí cuando exista<br><code>contenido/videos/p33.mp4</code></div>
+      </div>
+    </header>
+    <details><summary>Guion de voz (grábalo con el celular → <code>voces/p33.m4a</code>)</summary>
+      <pre>[0-4s]
+&quot;Dijimos que por cada tres que pagan, uno crece gratis. Hoy se cumple.&quot;
+
+[4-18s]
+&quot;[Nombre del negocio], en [ciudad]. [Cuántos años llevan]. [Qué hacen].
+Los eligió [quién lo nominó / uno de mis clientes].
+A partir de hoy y por los próximos seis meses trabajo para ellos gratis.&quot;
+
+[18-32s]
+&quot;Google, redes, mini página y capacitación para que después lo sepan hacer solos.
+Mismo trato que un cliente que paga. Mismas juntas, mismos reportes.
+Porque no es caridad. Es el modelo.&quot;
+
+[32-40s]
+&quot;Voy a documentar todo. Lo que funcione y lo que no.
+Si quieres el segundo lugar, nomina a alguien. La caja está abierta.&quot;
+
+TEXTO EN PANTALLA:
+0-4s   →  &quot;3 pagan. 1 crece gratis.&quot;
+4-18s  →  &quot;El primero: [NOMBRE]&quot;
+18-32s →  &quot;6 meses. Gratis. Mismo trato.&quot;
+32-40s →  &quot;Nomina al siguiente&quot;</pre></details>
+    <details><summary>Los 4 clips y sus prompts (para Veo, PixVerse, Kling o la que uses)</summary>
+      <div class="ajustes">Ajustes en cualquier herramienta: <b>vertical 9:16</b> · <b>8 segundos</b> ·
+      sin caras, sin texto, sin gente hablando. Pega también el prompt negativo si la herramienta lo acepta.</div>
+      
+      <div class="clip">
+        <div class="clip-h"><b>Clip 1</b><code>p33_c01.mp4</code>
+          <button class="cp" data-t="pr_p33_1">Copiar prompt</button></div>
+        <pre id="pr_p33_1">Hands untying an apron string behind the back in a small kitchen, steam and warm light, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p33_c01.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 2</b><code>p33_c02.mp4</code>
+          <button class="cp" data-t="pr_p33_2">Copiar prompt</button></div>
+        <pre id="pr_p33_2">A hand turning a hanging OPEN sign on a small shop door, morning light, dusty glass, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p33_c02.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 3</b><code>p33_c03.mp4</code>
+          <button class="cp" data-t="pr_p33_3">Copiar prompt</button></div>
+        <pre id="pr_p33_3">Overhead of a small business counter: a card reader, a jar of pens, a plant, a handwritten note pinned to the wall with unreadable text, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p33_c03.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+      <div class="clip">
+        <div class="clip-h"><b>Clip 4</b><code>p33_c04.mp4</code>
+          <button class="cp" data-t="pr_p33_4">Copiar prompt</button></div>
+        <pre id="pr_p33_4">A wide shot of a small storefront from across a quiet street at golden hour, no visible signage text, one car passing, shot on a handheld iPhone, slight camera shake, natural available light, visible sensor grain, imperfect off-center framing, cluttered real background, shallow depth of field, unretouched documentary footage, muted realistic colors</pre>
+        <video controls preload="none" src="contenido/clips/p33_c04.mp4"
+          onloadeddata="this.closest('.clip').classList.add('has')"></video>
+      </div>
+    </details>
+    <details><summary>Texto que se publicará con este Reel</summary><pre>Dijimos que por cada tres clientes que pagan, uno de la comunidad crece gratis. Hoy se cumple por primera vez.
+
+[Nombre del negocio], en [ciudad y estado]. [X] años abiertos. [Lo que hacen, en una línea humana.]
+
+Los nominó [quién], que es [su relación]. Y desde hoy, por los próximos seis meses, trabajo para ellos sin cobrarles nada.
+
+Qué reciben: el perfil de Google arreglado y completo, presencia en redes, mini página de una sola hoja, y capacitación para que al final del proceso lo sepan hacer solos. Eso último es lo más importante. La idea no es que dependan de mí.
+
+Mismas juntas, mismos reportes, mismo respeto que un cliente que paga. Porque no es caridad, es el modelo.
+
+Cómo va a funcionar en la práctica: una videollamada de 30 minutos cada dos semanas, y WhatsApp en el medio. Seis meses. Igual que un cliente que paga.
+
+Voy a documentar todo aquí: lo que funcione y lo que no. Si no funciona, también lo van a leer.
+
+El segundo lugar está abierto. Nomina a alguien en los comentarios.
+
+Y a mis clientes que pagan: esto lo hicieron posible ustedes. Literalmente.
+
+#NegociosHispanos #NegociosLatinos #EmprendedoresLatinos #NegocioLocal #MarketingBilingue #LatinosEnUSA #DueñosDeNegocio #MarketingVirtual #Florida</pre></details>
+  </article>
+<div class="foot">DoMa Marketing · los videos se ven cuando los archivos existen en el repositorio</div>
+</div>
+<script>
+document.querySelectorAll('.cp').forEach(b=>b.addEventListener('click',async()=>{
+  const t=document.getElementById(b.dataset.t).innerText;
+  try{await navigator.clipboard.writeText(t)}catch(e){}
+  const o=b.textContent;b.textContent='✓';b.classList.add('ok');
+  setTimeout(()=>{b.textContent=o;b.classList.remove('ok')},1200);
+}));
+fetch('contenido/calendario.json').then(r=>r.json()).then(c=>{
+  c.posts.forEach(p=>{const e=document.querySelector('.est[data-id="'+p.id+'"]');
+    if(!e)return;
+    if(p.video){e.textContent='APROBADO · se publica a su hora';e.style.color='#1f7a56'}
+    else if(p.estado==='falta_video'){e.textContent='esperando video / aprobación'}
+  });
+}).catch(()=>{});
+</script></body></html>
