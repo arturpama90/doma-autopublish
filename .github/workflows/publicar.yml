@@ -1,0 +1,78 @@
+name: Publicar en Instagram y Facebook
+
+# Corre cada 15 minutos y publica lo que le toque según el calendario.
+# GitHub usa UTC, pero el script convierte a hora de Nueva York (ET) por su
+# cuenta, así que no hay que pelearse con el horario de verano.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "Qué hacer"
+        required: true
+        default: seco
+        type: choice
+        options: [seco, probar, publicar_ahora]
+      id_post:
+        description: "Forzar una publicación concreta (p01, p05...). Solo con publicar_ahora."
+        required: false
+        type: string
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # para guardar publicado.json y no repetir posts
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Verificar credenciales
+        if: github.event.inputs.modo == 'probar'
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+        run: python src/publicar.py --probar
+
+      - name: Ensayo en seco
+        if: github.event.inputs.modo == 'seco'
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+        run: python src/publicar.py --seco ${{ github.event.inputs.id_post && format('--id {0}', github.event.inputs.id_post) || '' }}
+
+      - name: Publicar
+        if: github.event_name == 'schedule' || github.event.inputs.modo == 'publicar_ahora'
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+        run: python src/publicar.py ${{ github.event.inputs.id_post && format('--id {0}', github.event.inputs.id_post) || '' }}
+
+      - name: Guardar el registro de lo publicado
+        if: always() && (github.event_name == 'schedule' || github.event.inputs.modo == 'publicar_ahora')
+        run: |
+          if [[ -n "$(git status --porcelain contenido/publicado.json)" ]]; then
+            git config user.name  "DoMa Bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add contenido/publicado.json
+            git commit -m "registro: publicaciones subidas"
+            git push
+          else
+            echo "Sin cambios en el registro."
+          fi
