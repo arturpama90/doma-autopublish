@@ -1,0 +1,82 @@
+name: Generar un Reel con Veo 3.1
+
+# Este NO corre solo, y es a propósito: cada Reel cuesta dinero real.
+# Lo lanzas tú a mano desde la pestaña Actions cuando quieras uno.
+on:
+  workflow_dispatch:
+    inputs:
+      id_post:
+        description: "Publicación del Reel (p01, p05, p09, p13, p15, p20, p24, p27, p29, p33)"
+        required: true
+        type: string
+      calidad:
+        description: "Lite es para probar encuadres (barato). Fast es para publicar."
+        required: true
+        default: lite
+        type: choice
+        options: [lite, fast, standard]
+      segundos:
+        description: "Duración de cada clip. En pruebas usa 4, sale a la mitad."
+        required: true
+        default: "8"
+        type: choice
+        options: ["4", "6", "8"]
+      solo_clips:
+        description: "Generar los clips sueltos sin pegarlos (para revisarlos)"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Instalar ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Generar el Reel
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VEO_MODELO: ${{ vars.VEO_MODELO || 'veo-3.1-generate-preview' }}
+          VEO_SEGUNDOS: ${{ github.event.inputs.segundos }}
+          VEO_RESOLUCION: ${{ github.event.inputs.calidad == 'lite' && '720p' || '1080p' }}
+        run: |
+          python src/generar_reel.py \
+            --id "${{ github.event.inputs.id_post }}" \
+            ${{ github.event.inputs.solo_clips == 'true' && '--solo-clips' || '' }} \
+            $(ls voces/${{ github.event.inputs.id_post }}.* 2>/dev/null | head -1 | sed 's/^/--voz /')
+
+      - name: Guardar el video en el repositorio
+        run: |
+          git config user.name  "DoMa Bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A contenido/videos contenido/clips
+          if git diff --cached --quiet; then
+            echo "No se generó nada nuevo."
+          else
+            git commit -m "reel: ${{ github.event.inputs.id_post }} (${{ github.event.inputs.calidad }})"
+            git push
+          fi
+
+      - name: Dejar el video descargable desde Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: reel-${{ github.event.inputs.id_post }}
+          path: |
+            contenido/videos/*.mp4
+            contenido/clips/*.mp4
+          if-no-files-found: warn
+          retention-days: 14
