@@ -1,1 +1,9 @@
-{}
+{
+  "_errores": [
+    {
+      "id": "p03",
+      "cuando_utc": "2026-08-03T22:37:14.615235+00:00",
+      "error": "Faltan estas variables de entorno: META_ACCESS_TOKEN, IG_USER_ID. Revisa los Secrets del repositorio en GitHub."
+    }
+  ]
+}
