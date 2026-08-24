@@ -369,6 +369,11 @@
       "id": "p26",
       "cuando_utc": "2026-08-24T20:45:49.007259+00:00",
       "error": "Faltan estas variables de entorno: META_ACCESS_TOKEN, IG_USER_ID. Revisa los Secrets del repositorio en GitHub."
+    },
+    {
+      "id": "p26",
+      "cuando_utc": "2026-08-24T21:19:41.539478+00:00",
+      "error": "Faltan estas variables de entorno: META_ACCESS_TOKEN, IG_USER_ID. Revisa los Secrets del repositorio en GitHub."
     }
   ]
 }
